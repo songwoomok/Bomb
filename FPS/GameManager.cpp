@@ -59,7 +59,7 @@ void GameManager::StageStart()
 		for (int x = 0; x < nWidth; ++x)
 		{
 			int nIndex = y * nWidth + x;
-			eObjectType eType = (eObjectType)(sRef[nIndex] - '0');
+			eObjectType eType = MapData::DataToObjectType(sRef[nIndex]);
 
 			if (eType == eObjectType::None) { continue; }
 
@@ -78,7 +78,7 @@ void GameManager::StageStart()
 			else
 			{
 				int nLevel = (int)eType / (int)eObjectType::LevelGap;
-				m_vcObj.push_back(pObj);
+				m_vcObj[nLevel - 1].push_back(pObj);
 			}
 
 			pObj->SetMap(m_pMap);
@@ -137,9 +137,9 @@ void GameManager::RemoveObject(class Object* a_pObj)
 
 	auto& vc = m_vcObj[nLevelIndex];
 
-	auto itor = std::find_if(std::begin(m_vcObj), std::end(m_vcObj), [](Object*p) {return p == a_pObj; });
-	assert(itor != m_vcObj.end());
-	m_vcObj.erase(itor);
+	auto itor = std::find_if(std::begin(vc), std::end(vc), [a_pObj](Object*p) {return p == a_pObj; });
+	assert(itor != vc.end());
+	vc.erase(itor);
 }
 
 void GameManager::DropItem(Object* a_pObj)

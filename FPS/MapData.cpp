@@ -5,7 +5,7 @@ MapData MapData::m_arrData[eGame::MaxStage] = { {}, };
 
 MapData* MapData::Get(int a_nStage)
 {
-	return &m_arrData[a_nStage];
+	return &m_arrData[a_nStage-1];
 }
 
 void MapData::Init()

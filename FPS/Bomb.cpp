@@ -30,7 +30,7 @@ void Bomb::Init()
 	GameMng()->GetBombData(this);
 }
 
-void Bomb::Update(float a_fDelta)
+void Bomb::_Update(float a_fDelta)
 {
 	m_fLifeTime -= a_fDelta;
 

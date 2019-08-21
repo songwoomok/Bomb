@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Application.h"
 #include <ctime>
+#include <cstdlib>
 
 #include "SceneManager.h"
 #include "GameManager.h"

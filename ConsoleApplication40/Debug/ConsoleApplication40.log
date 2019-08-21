@@ -1,0 +1,36 @@
+﻿  pch.cpp
+  Application.cpp
+  Bomb.cpp
+  Box.cpp
+  FPS.cpp
+  Define.cpp
+  Door.cpp
+  GameManager.cpp
+c:\users\atents\source\repos\consoleapplication40\consoleapplication40\gamemanager.cpp(118): error C2511: 'void GameManager::RemoveObject(Objdect *)': 오버로드된 멤버 함수가 'GameManager'에 없습니다.
+  c:\users\atents\source\repos\consoleapplication40\consoleapplication40\gamemanager.h(13): note: 'GameManager' 선언을 참조하십시오.
+c:\users\atents\source\repos\consoleapplication40\consoleapplication40\gamemanager.cpp(119): error C2597: 비정적 멤버 'GameManager::m_vcObj'에 대한 참조가 잘못되었습니다.
+c:\users\atents\source\repos\consoleapplication40\consoleapplication40\gamemanager.cpp(119): error C3493: 지정된 기본 캡처 모드가 없기 때문에 'a_pObj'을(를) 암시적으로 캡처할 수 없습니다.
+c:\users\atents\source\repos\consoleapplication40\consoleapplication40\gamemanager.cpp(119): error C2672: 'std::find_if': 일치하는 오버로드된 함수가 없습니다.
+c:\users\atents\source\repos\consoleapplication40\consoleapplication40\gamemanager.cpp(119): error C2780: '_FwdIt std::find_if(_ExPo &&,_FwdIt,const _FwdIt,_Pr) noexcept': 인수가 4개 있어야 하는데 2개를 사용했습니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\algorithm(189): note: 'std::find_if' 선언을 참조하십시오.
+c:\users\atents\source\repos\consoleapplication40\consoleapplication40\gamemanager.cpp(119): error C2780: '_InIt std::find_if(_InIt,const _InIt,_Pr)': 인수가 3개 있어야 하는데 2개를 사용했습니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\algorithm(167): note: 'std::find_if' 선언을 참조하십시오.
+c:\users\atents\source\repos\consoleapplication40\consoleapplication40\gamemanager.cpp(120): error C3536: 'itor': 초기화되기 전에 사용할 수 없습니다.
+  GameOverScene.cpp
+  GameScene.cpp
+  IntroScene.cpp
+  Item.cpp
+  MapData.cpp
+  Monster.cpp
+  Object.cpp
+  ObjectFactory.cpp
+  Player.cpp
+  Scene.cpp
+  SceneFactory.cpp
+  SceneManager.cpp
+  Wall.cpp
+c:\users\atents\source\repos\consoleapplication40\consoleapplication40\wall.cpp(6): error C2511: 'Wall::Wall(void)': 오버로드된 멤버 함수가 'Wall'에 없습니다.
+  c:\users\atents\source\repos\consoleapplication40\consoleapplication40\wall.h(3): note: 'Wall' 선언을 참조하십시오.
+c:\users\atents\source\repos\consoleapplication40\consoleapplication40\wall.cpp(22): error C2084: 'Wall::~Wall(void)' 함수에 이미 본문이 있습니다.
+  c:\users\atents\source\repos\consoleapplication40\consoleapplication40\wall.cpp(10): note: '{dtor}'의 이전 정의를 참조하십시오.
+  코드를 생성하고 있습니다...

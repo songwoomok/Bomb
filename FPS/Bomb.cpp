@@ -2,6 +2,7 @@
 #include "Bomb.h"
 
 #include "GameManager.h"
+
 Bomb::Bomb(int x, int y) : Object(x, y)
 , m_Data{
 	{ '1', '1', '1', '1', '1' },

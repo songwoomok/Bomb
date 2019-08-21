@@ -11,5 +11,6 @@ public:
 	virtual void Interaction(class Hero* a_refHero) override;
 
 	eItem m_eType = eItem::None;
+	RenderTile m_Item[(int)eItem::Max];
 };
 

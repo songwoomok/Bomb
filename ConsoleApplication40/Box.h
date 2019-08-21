@@ -11,5 +11,7 @@ public:
 	virtual eObjectType GetObjectType() const override;
 
 	virtual void Explosived(class Bomb* a_refBomb) override;
+
+	RenderTile m_Data;
 };
 

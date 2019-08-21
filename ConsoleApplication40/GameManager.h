@@ -76,7 +76,7 @@ public:
 
 private:
 
-	std::vector<class Object*> m_vcObj;
+	std::vector<class Object*> m_vcObj[(int)eObjectType::LevelMax];
 	class Player* m_pPlayer = nullptr;
 
 	int m_nNowStage = 0;

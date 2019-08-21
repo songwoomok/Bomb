@@ -14,49 +14,51 @@ void MapData::Init()
 	m_arrData[0].x = 10;
 	m_arrData[0].y = 10;
 	m_arrData[0].mapOriginData =
-		"1111111111"
-		"1000000601"
-		"1020007001"
-		"1000000001"
-		"1000300001"
-		"1000000001"
-		"1000004001"
-		"1000000001"
-		"1050000001"
-		"1111111111";
-	m_arrData[0].MakeMap();
+		"WWWWWWWWWW"
+		"W      B W"
+		"W B   B  W"
+		"W  B     W"
+		"W  B     W"
+		"W  B     W"
+		"W  B  M  W"
+		"W  B     W"
+		"W PIIIII W"
+		"WWWWWWWWWW";
+	m_arrData[0].MakeMapBuffer();
 
 	// 2스테이지
 	m_arrData[1].x = 10;
 	m_arrData[1].y = 10;
 	m_arrData[1].mapOriginData =
-		"1111111111"
-		"1000000601"
-		"1020007001"
-		"1000000001"
-		"1000300001"
-		"1000000001"
-		"1000004001"
-		"1000000001"
-		"1050000001"
-		"1111111111";
-	m_arrData[1].MakeMap();
+		"WWWWWWWWWW"
+		"W  I   B W"
+		"W B   B  W"
+		"W  B     W"
+		"W  B     W"
+		"W  B     W"
+		"W  B  M  W"
+		"W  B     W"
+		"W P      W"
+		"WWWWWWWWWW";
+	m_arrData[1].MakeMapBuffer();
 
 	// 3스테이지
 	m_arrData[2].x = 10;
 	m_arrData[2].y = 10;
 	m_arrData[2].mapOriginData =
-		"1111111111"
-		"1000000601"
-		"1020007001"
-		"1000000001"
-		"1000300001"
-		"1000000001"
-		"1000004001"
-		"1000000001"
-		"1050000001"
-		"1111111111";
-	m_arrData[2].MakeMap();
+		"WWWWWWWWWW"
+		"W      B W"
+		"W B   B  W"
+		"W  B     W"
+		"W  B  I  W"
+		"W  B     W"
+		"W  B  M  W"
+		"W  B     W"
+		"W P      W"
+		"WWWWWWWWWW";
+	m_arrData[2].MakeMapBuffer();
+
+	cout << "map ok" << endl;
 }
 
 void MapData::Release()
@@ -67,26 +69,48 @@ void MapData::Release()
 	}
 }
 
-void MapData::MakeMap()
+eObjectType MapData::DataToObjectType(char c)
 {
-	pMap = new char*[y];
+	eObjectType eReturn = eObjectType::None;
 
-	for (int i = 0; i < y; ++i)
+	switch (c)
 	{
-		pMap[i] = new char[x + 1];
+	case ' ': { return eObjectType::None; } break;
+	case 'W': { eReturn = eObjectType::Wall; } break;
+	case 'B': { eReturn = eObjectType::Box; } break;
+	case 'D': { eReturn = eObjectType::Door; } break;
 
-		int gap = i * x;
+	case 'I': { eReturn = eObjectType::Item; } break;
+	case 'M': { eReturn = eObjectType::Monster; } break;
+	case 'P': { eReturn = eObjectType::Player; } break;
+	}
 
-		memcpy_s(pMap[i], sizeof(char) * (x + 1),
-			mapOriginData + gap, sizeof(char)* x);
+	assert(eReturn != eObjectType::None);
+	return eReturn;
+}
 
-		pMap[i][x] = 0;
+
+void MapData::MakeMapBuffer()
+{
+	int nX = x * TileSize;
+	int nY = y * TileSize;
+
+	pMap = new char*[nY];
+
+	for (int i = 0; i < nY; ++i)
+	{
+		pMap[i] = new char[nX + 1];
+
+		memset(pMap[i], ' ', sizeof(char)*(nX + 1));
+		pMap[i][nX] = 0;
 	}
 }
 
 void MapData::ReleaseData()
 {
-	for (int i = 0; i < y; ++i)
+	int nY = y * TileSize;
+
+	for (int i = 0; i < nY; ++i)
 	{
 		SAFE_DELETE_ARR(pMap[i])
 	}
@@ -96,7 +120,11 @@ void MapData::ReleaseData()
 
 void MapData::Render()
 {
-	for (int i = 0; i < y; ++i)
+	SetCursor(0, 0);
+
+	int nY = y * TileSize;
+
+	for (int i = 0; i < nY; ++i)
 	{
 		cout << pMap[i] << endl;
 	}

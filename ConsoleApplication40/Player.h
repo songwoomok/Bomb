@@ -8,5 +8,7 @@ public:
 	virtual ~Player();
 
 	virtual eObjectType GetObjectType() const override;
+
+	RenderTile m_Data;
 };
 

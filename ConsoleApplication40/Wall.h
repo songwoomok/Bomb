@@ -7,5 +7,6 @@ public:
 	virtual ~Wall();
 
 	virtual eObjectType GetObjectType() const override;
+	RenderTile m_Data;
 };
 

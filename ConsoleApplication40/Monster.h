@@ -8,4 +8,5 @@ public:
 	virtual ~Monster();
 
 	virtual eObjectType GetObjectType() const override;
+	RenderTile m_Data;
 };

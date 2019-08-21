@@ -18,11 +18,7 @@ CharacterData::CharacterData()
 GameManager::GameManager() { }
 GameManager::~GameManager()
 {
-	for (auto* pObj : m_vcObj)
-	{
-		SAFE_DELETE(pObj);
-	}
-
+	ClearObject();
 	SAFE_DELETE(m_pPlayer);
 }
 
@@ -49,6 +45,7 @@ void GameManager::StageStart()
 	m_fGameTime = RoundTime;
 
 	ClearObject();
+
 	m_refMap = MapData::Get(m_nNowStage);
 	assert(m_refMap != nullptr && m_refMap->pMap != nullptr);
 
@@ -80,6 +77,7 @@ void GameManager::StageStart()
 			}
 			else
 			{
+				int nLevel = (int)eType / (int)eObjectType::LevelGap;
 				m_vcObj.push_back(pObj);
 			}
 
@@ -91,31 +89,54 @@ void GameManager::StageStart()
 
 void GameManager::ClearObject()
 {
-	for (auto obj : m_vcObj)
+	for (auto& vc : m_vcObj)
 	{
-		SAFE_DELETE(obj);
-	}
+		for (auto* pObj : vc)
+		{
+			SAFE_DELETE(pObj);
+		}
 
-	m_vcObj.clear();
+		vc.clear();
+	}
 }
 
 void GameManager::Update(float a_fDeltaTime)
 {
-	for (auto obj : m_vcObj)
+	for (auto& vc : m_vcObj)
 	{
-		obj->Update(a_fDeltaTime);
+		for (auto* pObj : vc)
+		{
+			pObj->Update(a_fDeltaTime);
+		}
 	}
+
 	m_pPlayer->Update(a_fDeltaTime);
 }
 
 void GameManager::Render()
 {
-	SetCursor(0, 0);
+	for (auto& vc : m_vcObj)
+	{
+		for (auto* pObj : vc)
+		{
+			pObj->Render();
+		}
+	}
+
+
+	m_pPlayer->Render();
 	m_refMap->Render();
 }
 
-void GameManager::RemoveObject(class Objdect* a_pObj)
+void GameManager::RemoveObject(class Object* a_pObj)
 {
+	eObjectType eType = a_pObj->GetObjectType();
+
+	int nLevelIndex = (int)eType / (int)eObjectType::LevelGap;
+	nLevelIndex -= 1;
+
+	auto& vc = m_vcObj[nLevelIndex];
+
 	auto itor = std::find_if(std::begin(m_vcObj), std::end(m_vcObj), [](Object*p) {return p == a_pObj; });
 	assert(itor != m_vcObj.end());
 	m_vcObj.erase(itor);

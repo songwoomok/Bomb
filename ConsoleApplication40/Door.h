@@ -19,5 +19,8 @@ public:
 	virtual void Interaction(class Hero* a_refHero) override;
 
 	eDoorState m_eState = eDoorState::Close;
+
+	RenderTile m_Close;
+	RenderTile m_Open;
 };
 

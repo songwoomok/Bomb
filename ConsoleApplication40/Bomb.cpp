@@ -3,7 +3,15 @@
 
 #include "GameManager.h"
 Bomb::Bomb(int x, int y) : Object(x, y)
+, m_Data{
+	{ '1', '1', '1', '1', '1' },
+	{ '1', 'B', 'B', 'B', '1' },
+	{ '1', 'B', 'B', 'B', '1' },
+	{ '1', 'B', 'B', 'B', '1' },
+	{ '1', '1', '1', '1', '1' },
+}
 {
+	m_pNowAni = &m_Data;
 }
 
 

@@ -99,6 +99,9 @@
     <ClInclude Include="GameManager.h">
       <Filter>Project\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Ani.h">
+      <Filter>Project\Game\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -163,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Project\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Ani.cpp">
+      <Filter>Project\Game\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

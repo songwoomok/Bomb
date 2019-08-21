@@ -48,14 +48,25 @@ enum class eScene
 enum class eObjectType
 {
 	None = 0,
-	Wall,
+	LevelGap = 1000,
+
+	Level1 = LevelGap * 1,
+	Level2 = LevelGap * 2,
+	Level3 = LevelGap * 3,
+	LevelMax = 3,
+
+
+	Wall = Level1 + 1,
 	Box,
 	Door,
-	Item,
+
+
+	Item = Level2 + 1,
 	Bomb,
 
+	Player = Level3 + 1,
 	Monster,
-	Player,
+
 };
 
 enum class eItem
@@ -72,13 +83,17 @@ enum class eItem
 enum eGame
 {
 	MaxStage = 3,
+	TileSize = 5,
 };
 
 #define SAFE_DELETE(x)		{ if((x) != nullptr ) { delete (x); (x) = nullptr; } }
 #define SAFE_DELETE_ARR(x)	{ if((x) != nullptr ) { delete[] (x); (x) = nullptr; } }
+
+using RenderTile = char[TileSize][TileSize];
 
 enum class CURSOR_TYPE { NOCURSOR, SOLIDCURSOR, NORMALCURSOR };
 
 void SetCursor(const COORD& a_stPos);
 void SetCursor(int a_nPosX, int a_nPosY);
 void SetCursorType(CURSOR_TYPE c);
+void SetConsoleSize(int a_nWidth, int a_nHeight, int a_nX = 200, int a_nY = 200);

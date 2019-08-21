@@ -15,5 +15,6 @@ public:
 
 	float	m_fLifeTime = 2.0f;
 	int		m_nExplosiveRange = 2;
+	RenderTile m_Data;
 };
 

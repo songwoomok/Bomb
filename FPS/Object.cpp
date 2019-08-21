@@ -2,7 +2,7 @@
 #include "Object.h"
 
 Object::Object(int _x, int _y) : x(_x), y(_y) { }
-Object::~Object() { m_refMap = nullptr; }
+Object::~Object() { }
 
 void Object::Init() { }
 
@@ -31,7 +31,7 @@ void Object::Render()
 
 	for (int i = 0; i < TileSize; ++i)
 	{
-		char * pDest = m_refMap[nY + i];
+		char* pDest = m_refMap[nY + i];
 
 		memcpy_s((pDest + nX), TileSize * sizeof(char),
 			(*m_pNowAni)[i], TileSize * sizeof(char));

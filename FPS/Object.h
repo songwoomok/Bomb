@@ -25,7 +25,7 @@ public:
 	int x;
 	int y;
 
-private:
+protected:
 
 	char** m_refMap = nullptr;
 	RenderTile* m_pNowAni = nullptr

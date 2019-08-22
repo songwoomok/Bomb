@@ -32,7 +32,7 @@ public:
 protected:
 
 	virtual void _PreUpdate(float a_fDelta);
-	virtual void _Update(float a_fDelta);
+	virtual bool _Update(float a_fDelta);
 
 public:
 	int x;

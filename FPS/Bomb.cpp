@@ -90,7 +90,7 @@ void Bomb::Init()
 	GameMng()->GetBombData(this);
 }
 
-void Bomb::_Update(float a_fDelta)
+bool Bomb::_Update(float a_fDelta)
 {
 	m_pAni->Update(a_fDelta);
 	m_pNowAni = m_pAni->Get();

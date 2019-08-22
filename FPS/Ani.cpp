@@ -11,7 +11,7 @@ void Ani::Resize(int a_nAniTypeCount)
 	m_vcAni.resize(a_nAniTypeCount);
 }
 
-void Ani::Add(int a_nAni, RenderTile* tile)
+void Ani::Add(int a_nAni, const RenderTile& tile)
 {
 	assert(a_nAni < m_vcAni.size() && "logic error - Call Resize");
 	m_vcAni[a_nAni].push_back(tile);
@@ -54,6 +54,6 @@ void Ani::Update(float a_fDeltaTime)
 
 RenderTile* Ani::Get()
 {
-	RenderTile* r = (*m_pCurrentAni)[m_nCut];
+	RenderTile* r = &(*m_pCurrentAni)[m_nCut];
 	return r;
 }

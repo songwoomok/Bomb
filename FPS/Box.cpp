@@ -21,6 +21,5 @@ eObjectType Box::GetObjectType() const
 
 void Box::Explosived(Bomb* a_refBomb)
 {
-	GameMng()->RemoveObject(this);
 	GameMng()->DropItem(this);
 }

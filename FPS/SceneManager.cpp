@@ -13,9 +13,9 @@ SceneManager::SceneManager()
 	m_arrKeys[(int)eKey::Left] = VK_LEFT;
 	m_arrKeys[(int)eKey::W] = 'W';
 	m_arrKeys[(int)eKey::Up] = VK_UP;
-	m_arrKeys[(int)eKey::D] = 'S';
+	m_arrKeys[(int)eKey::D] = 'D';
 	m_arrKeys[(int)eKey::Right] = VK_RIGHT;
-	m_arrKeys[(int)eKey::S] = 'D';
+	m_arrKeys[(int)eKey::S] = 'S';
 	m_arrKeys[(int)eKey::Down] = VK_DOWN;
 	m_arrKeys[(int)eKey::SPACE] = VK_SPACE;
 	m_arrKeys[(int)eKey::Fire] = 'F';

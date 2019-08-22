@@ -9,6 +9,8 @@ public:
 
 	virtual eObjectType GetObjectType() const override;
 
+	virtual Rect GetRedertRect() const override;
+
 	RenderTile m_Data;
 };
 

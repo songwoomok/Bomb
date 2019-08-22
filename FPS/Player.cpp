@@ -22,3 +22,9 @@ eObjectType Player::GetObjectType() const
 {
 	return eObjectType::Player;
 }
+
+
+Rect Player::GetRedertRect() const
+{
+	return Rect{ rt.x - 1, rt.y - 1, rt.w,rt.h };
+}

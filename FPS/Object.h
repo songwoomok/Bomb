@@ -14,19 +14,23 @@ public:
 	virtual void Init();
 	virtual void Explosived(class Bomb* a_refBomb);
 	virtual void Interaction(class Hero* a_refHero);
-
 	inline void SetPos(int _x, int _y) { x = _x; y = _y; }
 
+	virtual Rect GetRenderRect() const;
+
 protected:
+	void Clear();
 	virtual void _PreUpdate(float a_fDelta);
 	virtual void _Update(float a_fDelta);
 
 public:
 	int x;
 	int y;
+	Rect rt;
 
 protected:
 
+	static RenderTile Empty;
 	char** m_refMap = nullptr;
 	RenderTile* m_pNowAni = nullptr
 };

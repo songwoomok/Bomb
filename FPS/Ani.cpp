@@ -1,9 +1,6 @@
 #include "pch.h"
 #include "Ani.h"
 
-Ani::Ani()
-{
-}
 
 Ani::~Ani()
 {
@@ -18,6 +15,14 @@ void Ani::Add(int a_nAni, RenderTile* tile)
 {
 	assert(a_nAni < m_vcAni.size() && "logic error - Call Resize");
 	m_vcAni[a_nAni].push_back(tile);
+}
+
+void Ani::Add(int a_nAniType, const std::initializer_list<RenderTile>& tiles)
+{
+	for (auto& tile : tiles)
+	{
+		Add(a_nAniType, tile);
+	}
 }
 
 void Ani::SetState(int a_nAni, int a_nCut /*= 0*/)

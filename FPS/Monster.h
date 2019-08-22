@@ -8,5 +8,6 @@ public:
 	virtual ~Monster();
 
 	virtual eObjectType GetObjectType() const override;
+	virtual bool Interaction(class Player* a_refHero) override;
 	RenderTile m_Data;
 };

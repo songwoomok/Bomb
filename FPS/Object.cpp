@@ -11,20 +11,24 @@ RenderTile Object::Empty = RenderTile{
 
 Object::Object(int _x, int _y) : x(_x), y(_y) 
 { 
-	rt.x = _x * TileSize;
-	rt.y = _y * TileSize;
+	rt.x = (float)(_x * TileSize);
+	rt.y = (float)(_y * TileSize);
 	rt.w = TileSize;
 	rt.h = TileSize;
 }
 
-Object::~Object() { }
+Object::~Object() 
+{ 
+	m_pNowAni = nullptr;
+	m_refMap = nullptr;
+}
 
 void Object::Init() { }
 
 void Object::Explosived(class Bomb* a_refBomb) { }
 void Object::Interaction(class Hero* a_refHero) { }
 void Object::_PreUpdate(float a_fDelta) { }
-void Object::_Update(float a_fDelta) { }
+void Object::_Update(float a_fDelta) { return false; }
 
 void Object::SetMap(char** a_refMap)
 {

@@ -39,7 +39,7 @@ public:
 	void Update(float a_fDeltaTime);
 	void Render();
 
-	eInputState GetKeyState(eKey a_eKey);
+	static eInputState GetKeyState(eKey a_eKey);
 
 private:
 

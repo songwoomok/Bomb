@@ -58,21 +58,35 @@ public:
 		BombBaseCount = 1,	
 	};
 
+	enum class eGameState
+	{
+		None,
+
+		Run,
+		End,
+	};
+
+public:
 	void Init();
 	void Release();
 
 	void GameInit();
 	void StageStart();
+	void StageEnd();
 
 	void Update(float a_fDeltaTime);
 	void Render();
 
 	void ClearObject();
+	void CreateObject(eObjectType a_eObjType, int x, int y);
 
 	void RemoveObject(class Object* a_pObj);
 	void DropItem(class Object* a_pObj);
 	void GetBombData(class Bomb* a_refBomb) const;
 	void ObtainItem(eItem a_eItem);
+	void DIe(class Object* a_refObj);
+	bool AddBomb(int a_nPlayerX, int a_nPlayerY);
+	void ResistExplosion(int a_nBombX, int a_nBombY, int a_nPower);
 
 private:
 
@@ -90,6 +104,10 @@ private:
 	std::queue<class Bomb*> m_qBomb;
 
 	CharacterData m_stPlayerData;
+
+	eGameState m_eState = eGameState::None;
+
+	std::string m_sLog = "";
 };
 
 

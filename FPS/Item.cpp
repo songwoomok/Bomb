@@ -4,6 +4,7 @@
 #include "GameManager.h"
 #include "Ani.h"
 
+#include "Player.h"
 
 Item::Item(int x, int y) : Object(x, y), m_pAni(new Ani())
 {
@@ -93,17 +94,24 @@ eObjectType Item::GetObjectType() const
 
 void Item::Interaction(class Hero* a_refHero)
 {
-	GameMng()->RemoveObject(this);
-	GameMng()->ObtainItem(m_eType);
+	if (IsCross(a_refHero) == true)
+	{
+		GameMng()->RemoveObject(this);
+		GameMng()->ObtainItem(m_eType);
+	}
+
+	return false;
 }
 
 void Item::_PreUpdate(float a_fDelta)
 {
-	Clear();
+	RenderClear();
 }
 
 void Item::_Update(float a_fDelta)
 {
 	m_pAni->Update(a_fDelta);
 	m_pNowAni = m_pAni->Get();
+
+	return false;
 }

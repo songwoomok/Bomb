@@ -8,7 +8,7 @@ public:
 
 	void Resize(int a_nAniTypeCount);
 	void Add(int a_nAniType, RenderTile* tile);
-	void Add(int a_nAniType, const std::initializer_list<RenderTile>* tiles);
+	void Add(int a_nAniType, const std::initializer_list<RenderTile>& tiles);
 
 	void SetState(int a_nAni, int a_nFrame = 0);
 	void NextCut();

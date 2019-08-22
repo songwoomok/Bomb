@@ -7,6 +7,7 @@
 #include <Windows.h>
 #include <ctime>
 
+#include <array>
 #include <string>
 #include <vector>
 #include <queue>

@@ -21,7 +21,7 @@ enum class eKey
 	Right,
 	D,
 	Down,
-	SPACE,
+	Space,
 	Fire,
 
 	Max,
@@ -48,25 +48,22 @@ enum class eScene
 enum class eObjectType
 {
 	None = 0,
-	LevelGap = 1000,
+	RenderDepthGap = 1000,
 
-	Level1 = LevelGap * 1,
-	Level2 = LevelGap * 2,
-	Level3 = LevelGap * 3,
-	LevelMax = 3,
+	RenderDepth1 = RenderDepthGap * 1,
+	RenderDepth2 = RenderDepthGap * 2,
+	RenderDepth3 = RenderDepthGap * 3,
+	RenderDepthCount = 3,
 
+	Wall = RenderDepth1 + 1,
 
-	Wall = Level1 + 1,
-	Box,
+	Box = RenderDepth2 + 1,
 	Door,
-
-
-	Item = Level2 + 1,
+	Item,
 	Bomb,
 
-	Player = Level3 + 1,
+	Player = RenderDepth3 + 1,
 	Monster,
-
 };
 
 enum class eItem
@@ -89,6 +86,9 @@ enum eGame
 #define SAFE_DELETE(x)		{ if((x) != nullptr ) { delete (x); (x) = nullptr; } }
 #define SAFE_DELETE_ARR(x)	{ if((x) != nullptr ) { delete[] (x); (x) = nullptr; } }
 
+#include "SceneManager.h"
+inline bool IsKeyDown(eKey a_eKey) { return SceneManager::GetKeyState(a_eKey) == eInputState::Down; }
+inline bool IsKeyUp(eKey a_eKey) { return SceneManager::GetKeyState(a_eKey) == eInputState::Up; }
 
 enum class CURSOR_TYPE { NOCURSOR, SOLIDCURSOR, NORMALCURSOR };
 
@@ -171,5 +171,21 @@ struct Rect
 		}
 
 		return true;
+	}
+
+	bool IsIn(int _x, int _y)
+	{
+		if ((x <= _x) && (_x <= x + w) &&
+			(y <= _y) && (_y <= y + h))
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	COORD Center()
+	{
+		return COORD{ (short)(x + w / 2), (short)(y + h / 2) };
 	}
 };

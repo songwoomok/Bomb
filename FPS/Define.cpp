@@ -38,3 +38,5 @@ void SetConsoleSize(int a_nWidth, int a_nHeight, int a_nX, int a_nY)
 	HWND console = GetConsoleWindow();
 	MoveWindow(console, a_nX, a_nY, a_nWidth, a_nHeight, TRUE);
 }
+
+

@@ -27,6 +27,14 @@ enum class eKey
 	Max,
 };
 
+enum class eDir
+{
+	Left,
+	Top,
+	Right,
+	Bottom,
+};
+
 enum class eInputState : short
 {
 	None = 0b00,
@@ -60,10 +68,11 @@ enum class eObjectType
 	Box = RenderDepth2 + 1,
 	Door,
 	Item,
-	Bomb,
 
 	Player = RenderDepth3 + 1,
 	Monster,
+	Explosion,
+	Bomb,
 };
 
 enum class eItem
@@ -97,6 +106,7 @@ void SetCursor(int a_nPosX, int a_nPosY);
 void SetCursorType(CURSOR_TYPE c);
 void SetConsoleSize(int a_nWidth, int a_nHeight, int a_nX = 200, int a_nY = 200);
 
+
 struct RenderLine
 {
 	RenderLine() = default;
@@ -116,7 +126,7 @@ struct RenderLine
 
 	RenderLine(const char* s)
 	{
-		int nLen = strlen(s);
+		size_t nLen = strlen(s);
 		assert(nLen <= TileSize);
 
 		strcpy_s(c, sizeof(char)*(TileSize + 1), s);
@@ -157,14 +167,14 @@ struct Rect
 {
 	float x;
 	float y;
-	float w;
-	float h;
+	float w; 
+	float h; 
 
-	bool IsCross(const Rect& rt)
+	bool IsCross(const Rect& rt) const
 	{
 		if ((x >= rt.x + rt.w) ||
 			(x + w <= rt.x) ||
-			(y >= rt.y + h) ||
+			(y >= rt.y + rt.h) ||
 			(y + h <= rt.y))
 		{
 			return false;
@@ -173,7 +183,7 @@ struct Rect
 		return true;
 	}
 
-	bool IsIn(int _x, int _y)
+	bool IsIn(int _x, int _y) const
 	{
 		if ((x <= _x) && (_x <= x + w) &&
 			(y <= _y) && (_y <= y + h))
@@ -184,7 +194,7 @@ struct Rect
 		return false;
 	}
 
-	COORD Center()
+	COORD Center() const
 	{
 		return COORD{ (short)(x + w / 2), (short)(y + h / 2) };
 	}

@@ -9,26 +9,27 @@ RenderTile Object::Empty = RenderTile{
 	{"     "},
 };
 
-Object::Object(int _x, int _y) : x(_x), y(_y) 
-{ 
+Object::Object(int _x, int _y) : x(_x), y(_y)
+{
 	rt.x = (float)(_x * TileSize);
 	rt.y = (float)(_y * TileSize);
 	rt.w = TileSize;
 	rt.h = TileSize;
 }
 
-Object::~Object() 
-{ 
+Object::~Object()
+{
 	m_pNowAni = nullptr;
 	m_refMap = nullptr;
 }
 
 void Object::Init() { }
 
-void Object::Explosived(class Bomb* a_refBomb) { }
-void Object::Interaction(class Hero* a_refHero) { }
-void Object::_PreUpdate(float a_fDelta) { }
-void Object::_Update(float a_fDelta) { return false; }
+bool Object::CanMove() const { return false; }
+bool Object::Explosived() { return false; }
+bool Object::Interaction(class Player* a_refHero) { return false; }
+void Object::_PreUpdate(float a_fDelta) {}
+bool Object::_Update(float a_fDelta) { return false; }
 
 void Object::SetMap(char** a_refMap)
 {
@@ -36,23 +37,22 @@ void Object::SetMap(char** a_refMap)
 	m_refMap = a_refMap;
 }
 
-
-void Object::Update(float a_fDelta)
+bool Object::Update(float a_fDelta)
 {
 	_PreUpdate(a_fDelta);
-	_Update(a_fDelta);
+	return _Update(a_fDelta);
 }
 
-Rect Object::GetRenderRect() const
+Rect Object::GetRendertRect() const
 {
 	return rt;
 }
 
-void Object::Clear()
+void Object::RenderClear()
 {
 	Rect rt = GetRendertRect();
-	int nX = rt.x;
-	int nY = rt.y;
+	int nX = (int)rt.x;
+	int nY = (int)rt.y;
 
 	for (int i = 0; i < TileSize; ++i)
 	{
@@ -65,9 +65,9 @@ void Object::Clear()
 
 void Object::Render()
 {
-	Rect rt = GetRenderRect();
-	int nX = rt.x;
-	int nY = rt.y;
+	Rect rt = GetRendertRect();
+	int nX = (int)rt.x;
+	int nY = (int)rt.y;
 
 	for (int i = 0; i < TileSize; ++i)
 	{
@@ -77,3 +77,5 @@ void Object::Render()
 			(*m_pNowAni)[i], TileSize * sizeof(char));
 	}
 }
+
+

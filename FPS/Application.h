@@ -13,6 +13,7 @@ protected:
 
 	eUpdateState Update(float a_fDelta);
 	void Render();
+	void PostRender();
 
 private:
 	clock_t m_nDeltaTick;

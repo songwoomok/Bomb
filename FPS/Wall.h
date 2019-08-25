@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+
 class Wall : public Object
 {
 public:
@@ -7,6 +8,6 @@ public:
 	virtual ~Wall();
 
 	virtual eObjectType GetObjectType() const override;
-	RenderTile m_Data;
+	RenderTile	m_Data;
 };
 

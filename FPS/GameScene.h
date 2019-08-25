@@ -12,4 +12,5 @@ public:
 	virtual void Init() override;
 	virtual void Update(float a_fDeltaTime) override;
 	virtual void Render() override;
+	virtual void PostRender() override;
 };

@@ -38,6 +38,7 @@ public:
 
 	void Update(float a_fDeltaTime);
 	void Render();
+	void PostRender();
 
 	static eInputState GetKeyState(eKey a_eKey);
 
@@ -50,7 +51,7 @@ private:
 
 	int				m_arrKeys[(int)eKey::Max];
 	int				m_BeforeKeyState[(int)eKey::Max];
-	eInputState		m_KeyState[(int)eKey::Max];
+	static eInputState	 m_KeyState[(int)eKey::Max];
 };
 
 #define InitSceneMng()		{SceneManager::CreateInstance(); SceneManager::GetInstance()->Init();}

@@ -14,13 +14,14 @@ public:
 	virtual ~Door();
 
 	virtual eObjectType GetObjectType() const override;
+	virtual bool CanMove() const override;
 
 	virtual void Init() override;
-	virtual void Interaction(class Hero* a_refHero) override;
+	virtual bool Interaction(class Player* a_refHero) override;
 
 	eDoorState m_eState = eDoorState::Close;
 
-	RenderTile m_Close;
-	RenderTile m_Open;
+	RenderTile	m_Close;
+	RenderTile	m_Open;
 };
 

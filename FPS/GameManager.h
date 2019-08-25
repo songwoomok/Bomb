@@ -2,12 +2,34 @@
 
 struct CharacterData
 {
-	float	fMoveSpeed;
+	float	fMoveSeepd;
 	float	fBombTime;
 	int		nBombPower;
 	int		nBombCount;
 
 	CharacterData();
+};
+
+struct Explosion
+{
+	int x;
+	int y;
+	int pow;
+
+	Explosion(int _x, int _y, int _pow) : x(_x), y(_y), pow(_pow)
+	{
+	}
+};
+
+struct CreateObj
+{
+	int x;
+	int y;
+	eObjectType type;
+
+	CreateObj(int _x, int _y, eObjectType _type) : x(_x), y(_y), type(_type)
+	{
+	}
 };
 
 class GameManager
@@ -76,21 +98,31 @@ public:
 
 	void Update(float a_fDeltaTime);
 	void Render();
+	void PostRender();
 
 	void ClearObject();
-	void CreateObject(eObjectType a_eObjType, int x, int y);
+	class Object* CreateObject(eObjectType a_eObjType, int x, int y);
 
+	// 상호작용
 	void RemoveObject(class Object* a_pObj);
 	void DropItem(class Object* a_pObj);
-	void GetBombData(class Bomb* a_refBomb) const;
+	void GetBombData(OUT class Bomb* a_refBomb) const;
 	void ObtainItem(eItem a_eItem);
-	void DIe(class Object* a_refObj);
-	bool AddBomb(int a_nPlayerX, int a_nPlayerY);
-	void ResistExplosion(int a_nBombX, int a_nBombY, int a_nPower);
+	void Die(class Object* a_refObj);
+	class Object* AddBomb(int a_nPlayerX, int a_nPlayerY);
+	void ResistExplosion(Object* a_refBomb, int x, int y, int pow);
+	bool MoveCheck(class Object* a_pMoveIgnoreObject = nullptr);
+	void CheckExplosion(Object* a_refExplosion);
+	void AddScore(int a_nScore);
 
 private:
 
-	std::vector<class Object*> m_vcObj[(int)eObjectType::LevelMax];
+	void CreateExplosionRecursive(eDir a_eDir, int nBombX, int nBombY, int a_nRemainPower);
+	bool FindObject_withPosition(eObjectType a_eObj, int x, int y);
+
+private:
+
+	std::array<std::vector<class Object*>, (int)eObjectType::RenderDepthCount> m_arrObj;
 	class Player* m_pPlayer = nullptr;
 
 	int m_nNowStage = 0;
@@ -101,12 +133,17 @@ private:
 	int m_nNowLife = 0;		
 	int m_nScore = 0;		
 
-	std::queue<class Bomb*> m_qBomb;
+	std::vector<class Object*> m_vcDelete;
+
+	std::vector<CreateObj> m_vcCreate;
+
+	std::vector<Explosion> m_vcExplision;
 
 	CharacterData m_stPlayerData;
 
-	eGameState m_eState = eGameState::None;
+	eGameState	m_eState = eGameState::None;
 
+public:
 	std::string m_sLog = "";
 };
 

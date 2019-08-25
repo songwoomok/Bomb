@@ -77,6 +77,7 @@ Bomb::Bomb(int x, int y) : Object(x, y), m_pAni(new Ani())
 
 Bomb::~Bomb()
 {
+	SAFE_DELETE(m_pAni);
 }
 
 
@@ -90,23 +91,30 @@ void Bomb::Init()
 	GameMng()->GetBombData(this);
 }
 
+
 bool Bomb::_Update(float a_fDelta)
 {
 	m_pAni->Update(a_fDelta);
 	m_pNowAni = m_pAni->Get();
 
-
 	m_fLifeTime -= a_fDelta;
 	if (m_fLifeTime <= 0.0f)
 	{
 		COORD c = rt.Center();
-		GameMng()->ResistExplosion(c.X, c.Y);
+		GameMng()->ResistExplosion(this, rt.x, rt.y, m_nExplosiveRange);
+
+		std::string s = "Explosion Pos : ";
+		s += std::to_string(c.X);
+		s += " /// ";
+		s += std::to_string(c.Y);
+		s += "\n";
+		GameMng()->m_sLog += s;
+
 		return true;
 	}
 
 	return false;
 }
-
 void Bomb::Explosived(Bomb* a_refBomb)
 {
 	if (a_refBomb == this) { return; }

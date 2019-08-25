@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "Ani.h"
 
-
 Ani::~Ani()
 {
 }

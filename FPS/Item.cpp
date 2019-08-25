@@ -82,7 +82,7 @@ Item::Item(int x, int y) : Object(x, y), m_pAni(new Ani())
 	m_pNowAni = m_pAni->Get();
 }
 
-Item::~Item() 
+Item::~Item()
 {
 	SAFE_DELETE(m_pAni);
 }
@@ -92,15 +92,20 @@ eObjectType Item::GetObjectType() const
 	return eObjectType::Item;
 }
 
-void Item::Interaction(class Hero* a_refHero)
+bool Item::Interaction(class Player* a_refHero)
 {
 	if (IsCross(a_refHero) == true)
 	{
-		GameMng()->RemoveObject(this);
 		GameMng()->ObtainItem(m_eType);
+		return true;
 	}
 
 	return false;
+}
+
+bool Item::CanMove() const
+{
+	return true;
 }
 
 void Item::_PreUpdate(float a_fDelta)
@@ -108,7 +113,7 @@ void Item::_PreUpdate(float a_fDelta)
 	RenderClear();
 }
 
-void Item::_Update(float a_fDelta)
+bool Item::_Update(float a_fDelta)
 {
 	m_pAni->Update(a_fDelta);
 	m_pNowAni = m_pAni->Get();

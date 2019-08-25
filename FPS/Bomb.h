@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Object.h"
 
 class Bomb : public Object
@@ -9,12 +10,12 @@ public:
 
 	virtual eObjectType GetObjectType() const override;
 
-	void Init() override;
-	bool _Update(float a_fDelta) override;
-	void Explosived(class Bomb* a_refBomb) override;
+	virtual void Init() override;
+	virtual bool _Update(float a_fDelta) override;
+	virtual bool Explosived() override;
 
-	float	m_fLifeTime = 2.0f;
-	int		m_nExplosiveRange = 2;
+	float		m_fLifeTime = 2.0f;
+	int			m_nExplosiveRange = 2;
 
 	class Ani* m_pAni = nullptr;
 };

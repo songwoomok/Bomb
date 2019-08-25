@@ -12,7 +12,7 @@ public:
 
 	void SetState(int a_nAni, int a_nCut = 0);
 	void NextCut();
-	
+
 	void Update(float a_fDeltaTime);
 	RenderTile* Get();
 
@@ -26,4 +26,3 @@ public:
 
 	inline static const float a_fCutTime = 0.2f;
 };
-

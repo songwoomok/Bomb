@@ -5,7 +5,7 @@ MapData MapData::m_arrData[eGame::MaxStage] = { {}, };
 
 MapData* MapData::Get(int a_nStage)
 {
-	return &m_arrData[a_nStage-1];
+	return &m_arrData[a_nStage - 1];
 }
 
 void MapData::Init()
@@ -81,6 +81,7 @@ eObjectType MapData::DataToObjectType(char c)
 	case 'D': { eReturn = eObjectType::Door; } break;
 
 	case 'I': { eReturn = eObjectType::Item; } break;
+		// case 'O': { eReturn = eObjectType::Bomb; } break;
 	case 'M': { eReturn = eObjectType::Monster; } break;
 	case 'P': { eReturn = eObjectType::Player; } break;
 	}
@@ -88,7 +89,6 @@ eObjectType MapData::DataToObjectType(char c)
 	assert(eReturn != eObjectType::None);
 	return eReturn;
 }
-
 
 void MapData::MakeMapBuffer()
 {

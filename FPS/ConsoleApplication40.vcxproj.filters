@@ -102,6 +102,9 @@
     <ClInclude Include="Ani.h">
       <Filter>Project\Game\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Explosion.h">
+      <Filter>Project\Game\Object\Sub</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -169,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="Ani.cpp">
       <Filter>Project\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>Project\Game\Object\Sub</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
